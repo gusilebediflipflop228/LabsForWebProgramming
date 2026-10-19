@@ -1,0 +1,68 @@
+/* Общие настройки страницы. */
+body {
+    margin: 0; /* Убираем стандартные внешние отступы браузера. */
+    background-color: white; /* Задаём белый фон страницы. */
+}
+
+/* Начальное состояние элемента с id="circle". */
+#circle {
+    /* Размещаем круг независимо от остальных элементов.
+       Здесь нет позиционированного родителя, поэтому отступы
+       отсчитываются от начальной области страницы. */
+    position: absolute;
+    top: 100px; /* Отступ сверху по условию задания. */
+    left: 100px; /* Отступ слева по условию задания. */
+    width: 100px; /* Исходная ширина круга. */
+    height: 100px; /* Высота равна ширине, чтобы получился круг. */
+    padding: 0; /* Убираем внутренние отступы кнопки. */
+    box-sizing: border-box; /* Рамка входит в заданные ширину и высоту. */
+    border: none; /* Убираем стандартную рамку кнопки. */
+    border-radius: 50%; /* Скругляем квадрат до формы круга. */
+    background-color: royalblue; /* Исходный синий цвет заливки. */
+    cursor: pointer; /* При наведении показываем курсор в виде руки. */
+    /* Увеличение идёт от верхнего левого угла:
+       отступы по 100px сохраняются и после увеличения. */
+    transform-origin: top left;
+}
+
+/* Первый клик: JavaScript добавляет кругу класс enlarged. */
+#circle.enlarged {
+    /* enlarge — имя анимации, 0.5s — длительность в полсекунды,
+       ease — плавное изменение скорости,
+       forwards — сохранение конечного вида после анимации. */
+    animation: enlarge 2s ease forwards;
+}
+
+#circle.shrinked {
+    animation: shrink 2s ease forwards;
+}
+
+@keyframes shrink {
+    from {
+        transform: scale(2);
+        background-color: tomato;
+    }
+    to {
+        transform: scale(1);
+        background-color: royalblue;
+    }
+}
+
+/* Ключевые кадры описывают начальный и конечный вид круга.
+   Промежуточные размер и цвет браузер рассчитывает сам. */
+@keyframes enlarge {
+    from {
+        transform: scale(1); /* Начинаем с исходного размера. */
+        background-color: royalblue; /* Начинаем с синего цвета. */
+    }
+    to {
+        transform: scale(2); /* Удваиваем диаметр: со 100px до 200px. */
+        background-color: tomato; /* Меняем заливку на красно-оранжевую. */
+    }
+}
+
+/* Третий клик: JavaScript добавляет класс outlined — остаётся контур. */
+#circle.outlined {
+    background-color: transparent; /* Убираем заливку круга. */
+    border: 3px solid royalblue; /* Рисуем сплошную синюю рамку толщиной 3px. */
+}

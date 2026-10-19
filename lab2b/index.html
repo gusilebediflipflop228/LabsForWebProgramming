@@ -1,0 +1,61 @@
+<!-- HTML задаёт структуру страницы; CSS — оформление; JavaScript — поведение. -->
+<!-- DOCTYPE сообщает браузеру, что документ написан на современном HTML. -->
+<!DOCTYPE html>
+<!-- Язык страницы нужен в том числе программам чтения с экрана. -->
+<html lang="ru">
+<head>
+  <!-- UTF-8 позволяет правильно отображать русские буквы. -->
+  <meta charset="UTF-8">
+  <!-- На телефоне ширина страницы будет соответствовать ширине экрана. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Название вкладки браузера. -->
+  <title>Проверка надёжности пароля</title>
+  <!-- Подключаем стили из файла в этой же папке. -->
+  <link rel="stylesheet" href="style.css">
+  <!-- defer запускает скрипт после разбора HTML, когда элементы уже доступны. -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Основная карточка. class связывает элемент с правилами в style.css. -->
+  <main class="card">
+    <!-- Подзаголовок, главный заголовок и пояснение задания. -->
+    <p class="subtitle">Лабораторная работа 2б</p>
+    <h1>Насколько надёжен ваш пароль?</h1>
+    <p class="description">Введите пароль, чтобы проверить его по условиям задания.</p>
+
+    <!-- for связывает подпись с полем по его id. Клик по подписи выбирает поле. -->
+    <label for="password">Пароль</label>
+    <!-- id нужен для поиска поля в JavaScript; type="password" скрывает символы.
+         placeholder — подсказка для пустого поля; autocomplete="off" просит
+         браузер не подставлять сохранённое значение; spellcheck отключает проверку орфографии.
+         aria-describedby связывает поле с пояснениями для программ чтения с экрана. -->
+    <input id="password" type="password" placeholder="Введите пароль" autocomplete="off" spellcheck="false" aria-describedby="result requirements">
+    <!-- Флажок переключает видимость пароля. Вложенность связывает его с подписью. -->
+    <label class="show-password">
+      <input id="show-password" type="checkbox">
+      Показать пароль
+    </label>
+
+    <!-- Блок результата; aria-label задаёт его доступное название. -->
+    <section class="strength" aria-label="Надёжность пароля">
+      <!-- Скрипт меняет этот текст; role="status" позволяет озвучить обновление. -->
+      <p id="result" role="status">Введите пароль</p>
+      <!-- Индикатор показывает число выполненных условий: от 0 до 5. -->
+      <meter id="strength-meter" min="0" max="5" value="0" aria-label="Количество выполненных условий">0 из 5</meter>
+    </section>
+
+    <!-- Список условий. id каждого пункта совпадает с ключом объекта checks в JS.
+         Скрипт добавляет выполненному пункту класс passed и меняет кружок на галочку.
+         aria-hidden скрывает декоративный значок от программ чтения с экрана. -->
+    <ul id="requirements">
+      <li id="length"><span class="mark" aria-hidden="true">○</span> Не менее 8 символов</li>
+      <li id="uppercase"><span class="mark" aria-hidden="true">○</span> Заглавная буква</li>
+      <li id="lowercase"><span class="mark" aria-hidden="true">○</span> Строчная буква</li>
+      <li id="digit"><span class="mark" aria-hidden="true">○</span> Цифра</li>
+      <li id="special"><span class="mark" aria-hidden="true">○</span> Специальный символ: ! @ # $ % и другие</li>
+    </ul>
+    <!-- Информационная подпись внизу карточки. -->
+    <p class="note">Проверка выполняется в браузере. Пароль не сохраняется и никуда не отправляется.</p>
+  </main>
+</body>
+</html>

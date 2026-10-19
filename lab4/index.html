@@ -1,0 +1,74 @@
+<!-- Объявляем документ HTML5. -->
+<!DOCTYPE html>
+<!-- Указываем русский язык страницы. -->
+<html lang="ru">
+<!-- В head находятся настройки страницы и подключения файлов; этот блок не отображается как содержимое. -->
+<head>
+  <!-- UTF-8 позволяет корректно отображать русские буквы. -->
+  <meta charset="UTF-8">
+  <!-- Название вкладки браузера. -->
+  <title>Угадай число — лабораторная № 4</title>
+  <!-- Подключаем внешний файл со стилями. -->
+  <link rel="stylesheet" href="style.css">
+  <!-- defer запускает скрипт только после чтения HTML-разметки. -->
+  <script src="script.js" defer></script>
+</head>
+<!-- В body находится видимая часть страницы. -->
+<body>
+  <!-- Главная карточка игры. class связывает элемент с правилами из CSS. -->
+  <main class="game">
+    <!-- Верхняя строка карточки с названием работы и диапазоном чисел. -->
+    <header class="game-header">
+      <!-- Небольшая подпись с номером лабораторной работы. -->
+      <span class="eyebrow">Лабораторная работа № 4</span>
+    </header>
+
+    <!-- Основная область игры; aria-labelledby связывает раздел с заголовком по его id. -->
+    <section class="play-area" aria-labelledby="game-title">
+      <!-- Главный заголовок. Точка вынесена в span, чтобы CSS мог покрасить её отдельно. -->
+      <h1 id="game-title">Угадай число<span>.</span></h1>
+      <!-- Краткие правила: strong выделяет диапазон, br переносит текст на следующую строку. -->
+      <p class="description">Я загадал целое число от <strong>1 до 100</strong>.<br>
+        Введи свой вариант — я подскажу, куда двигаться.</p>
+
+      <!-- Проверка числа запускается нажатием кнопки «Проверить». -->
+      <div class="guess-controls">
+        <!-- Подпись связана с полем через совпадение for и id. -->
+        <label for="guess-input">Твоё число</label>
+        <!-- Контейнер располагает поле и кнопку в одном ряду. -->
+        <div class="input-row">
+          <!-- Числовое поле: min/max задают границы, step — шаг 1, placeholder — пример ввода. Проверку делает JavaScript. -->
+          <input id="guess-input" name="guess" type="number" min="1" max="100"
+                 step="1" autocomplete="off" placeholder="Например, 50"
+                 aria-describedby="feedback">
+          <!-- Обычная кнопка без отправки формы. JavaScript находит её по id и обрабатывает click. -->
+          <button id="guess-button" class="primary-button" type="button">Проверить <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+
+      <!-- aria-live озвучивает изменившуюся подсказку без перезагрузки страницы. -->
+      <!-- JavaScript заменяет содержимое этого абзаца подсказкой, картинкой или поздравлением. -->
+      <p id="feedback" class="feedback" role="status" aria-live="polite">Начни с любого числа. У тебя сколько угодно попыток.</p>
+    </section>
+
+    <!-- Раздел истории ответов текущего раунда. -->
+    <section class="history-section" aria-labelledby="history-title">
+      <!-- Заголовок истории и кнопка новой игры стоят в одной строке. -->
+      <div class="history-heading">
+        <!-- Число внутри attempt-count обновляется после каждой принятой попытки. -->
+        <h2 id="history-title">Твои попытки <span id="attempt-count" class="counter">0</span></h2>
+        <!-- Кнопка сбрасывает историю и загадывает другое число. -->
+        <button id="restart-button" class="text-button" type="button">Новая игра <span aria-hidden="true">↻</span></button>
+      </div>
+      <!-- Эта надпись скрывается после первого допустимого ответа. -->
+      <p id="empty-history" class="empty-history">Пока здесь пусто. Первый шаг за тобой!</p>
+      <!-- Каждый допустимый ответ добавляется отдельным пунктом; повторы сохраняются. -->
+      <!-- Пункты li создаются в JavaScript. aria-label задаёт понятное название списка. -->
+      <ol id="history" class="history-list" aria-label="История введённых чисел"></ol>
+    </section>
+
+    <!-- Сообщение будет видно только при отключённом JavaScript. -->
+    <noscript><p class="noscript">Для игры включи JavaScript в настройках браузера.</p></noscript>
+  </main>
+</body>
+</html>

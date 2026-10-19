@@ -1,0 +1,143 @@
+/* стиль */
+* {
+  box-sizing: border-box; /* Если я указал размер элемента, включай в этот размер отступы и границы.*/
+}
+
+html {
+  min-width: 1280px; /* Страница не должна становиться уже 1280 пикселей */
+}
+
+body {
+  min-height: 100vh; /* Страница должна быть высотой минимум во всё окно браузера. */
+  margin: 0; /* Убираем отступы сверху и снизу */
+  color: #faf7f7;
+  background: #000205;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  width: calc(100% - 40px);
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 50px 0; /* пространство внутри элемента */
+}
+
+.header {
+  display: flex; /* расположение в строку */
+  align-items: flex-end; /* выравнивание по нижней линии */
+  justify-content: center; /* раздвигание элементов */
+  margin-bottom: 40px;
+}
+
+.label {
+  display: flex;
+  margin: 0 0 12px;
+  color: #a897ff;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  justify-content: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 72px;
+  line-height: 0.95;
+}
+
+.hint {
+  margin: 0;
+  color: #9aa3b5;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.color-card {
+  height: 430px;
+  overflow: hidden;
+  border: 1px solid #272b35;
+  border-radius: 22px;
+  background: #11141c;
+  transition: transform 0.2s;
+}
+
+.color-card:hover {
+  transform: translateY(-6px);
+}
+
+.color-block {
+  height: 340px;
+}
+
+.color-info {
+  display: flex;
+  height: 90px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px;
+}
+
+.color-code {
+  font-family: monospace;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.copy-button {
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #303642;
+  border-radius: 12px;
+  color: #b5bdca;
+  background: #191e29;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  color: white;
+  background: #242b39;
+}
+
+.generate-button {
+  display: block;
+  height: 58px;
+  margin: 36px auto 0;
+  padding: 0 30px;
+  border: none;
+  border-radius: 16px;
+  color: white;
+  background: #715cff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.generate-button:hover {
+  background: #8674ff;
+}
+
+.message {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  margin: 0;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #191e29;
+  font-size: 14px;
+  font-weight: bold;
+  transform: translateX(-50%);
+}
+
+.message:empty {
+  display: none;
+}

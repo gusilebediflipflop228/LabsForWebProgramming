@@ -1,0 +1,71 @@
+<!-- HTML задаёт структуру страницы. Оформление находится в style.css, логика — в script.js. -->
+<!-- DOCTYPE сообщает браузеру, что документ написан на современном HTML. -->
+<!DOCTYPE html>
+<!-- Язык страницы нужен браузеру и программам, которые читают текст вслух. -->
+<html lang="ru">
+<head>
+  <!-- UTF-8 позволяет правильно показывать русский текст и эмодзи. -->
+  <meta charset="UTF-8">
+  <!-- На телефоне ширина страницы будет соответствовать ширине экрана. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Этот заголовок отображается во вкладке браузера. -->
+  <title>Котики против фото — крестики-нолики</title>
+  <!-- Подключаем CSS. Пути к файлам указаны относительно этой же папки. -->
+  <link rel="stylesheet" href="style.css">
+  <!-- defer откладывает запуск JavaScript до завершения разбора HTML. -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Основное содержимое игры. class связывает элемент со стилями CSS. -->
+  <main class="game">
+    <p class="eyebrow">Крестики-нолики · 5 × 5</p>
+    <h1>Котики против фото</h1>
+    <p class="rules">Играйте вдвоём. Соберите 3 символа подряд<br>по горизонтали, вертикали или диагонали.</p>
+
+    <!-- Три карточки со счётом. По уникальным id скрипт находит и обновляет числа. -->
+    <!-- aria-label задаёт понятное название блока для программы чтения с экрана. -->
+    <section class="scoreboard" aria-label="Счёт игры">
+      <!-- Победы первого игрока: котик заменяет крестик. -->
+      <div class="score cat-score">
+        <span>🐱 Котики · X</span>
+        <strong id="cat-wins">0</strong>
+        <small>побед</small>
+      </div>
+      <!-- Количество завершённых раундов, включая ничьи. -->
+      <div class="score">
+        <span>Раунды</span>
+        <strong id="rounds">0</strong>
+        <small>завершено</small>
+      </div>
+      <!-- Победы второго игрока: фото заменяет нолик. -->
+      <div class="score photo-score">
+        <span><img class="player-photo" src="player-photo.png" alt=""> Фото · O</span>
+        <strong id="photo-wins">0</strong>
+        <small>побед</small>
+      </div>
+    </section>
+
+    <!-- Скрипт показывает здесь текущего игрока или итог раунда. -->
+    <!-- role="status" позволяет программе чтения с экрана сообщать об изменениях. -->
+    <p id="turn" class="turn" role="status">Ходит котик 🐱</p>
+    <!-- Контейнер изначально пуст: JavaScript создаст внутри 25 кнопок-клеток. -->
+    <div id="board" class="board" role="group" aria-label="Игровое поле 5 на 5"></div>
+    <!-- hidden скрывает кнопку до конца раунда. Она пригодится, если окно закрыто через Escape. -->
+    <button id="next-round" class="button next-round" type="button" hidden>Следующий раунд</button>
+    <!-- Постоянная подсказка о первом ходе и сбросе счёта. -->
+    <p class="hint">Котик ходит первым в каждом раунде.<br>При обновлении страницы весь счёт сбрасывается.</p>
+  </main>
+
+  <!-- Встроенное диалоговое окно. Скрипт открывает его методом showModal(). -->
+  <!-- aria-labelledby и aria-describedby связывают окно с его заголовком и пояснением. -->
+  <dialog id="result-dialog" aria-labelledby="result-title" aria-describedby="result-description">
+    <!-- Пустые элементы заполняются итогом раунда из JavaScript. -->
+    <!-- Изображение декоративное: aria-hidden исключает его из озвучивания. -->
+    <div id="result-emoji" class="result-emoji" aria-hidden="true"></div>
+    <h2 id="result-title"></h2>
+    <p id="result-description"></p>
+    <!-- Эта кнопка закрывает окно и начинает новый раунд. -->
+    <button id="dialog-next-round" class="button" type="button">Следующий раунд</button>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,224 @@
+/* CSS отвечает только за внешний вид. Правила игры находятся в script.js. */
+/* Точка перед именем выбирает class, а имя тега (body, h1) — все такие теги. */
+/* Звёздочка выбирает все элементы. border-box включает рамку и padding в заданный размер. */
+* {
+  box-sizing: border-box;
+}
+
+/* Общий фон, шрифт и отступы страницы. 100vh — полная высота окна браузера. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 36px 16px;
+  background: #f6f4ee;
+  color: #29372e;
+  font-family: Arial, sans-serif;
+}
+
+/* Ограничиваем ширину игры. auto слева и справа располагает блок по центру. */
+.game {
+  max-width: 460px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Небольшая подпись над заголовком; letter-spacing увеличивает расстояние между буквами. */
+.eyebrow {
+  margin: 0 0 12px;
+  color: #65736a;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* clamp задаёт размер шрифта: минимум 28px, желаемый 7% ширины окна, максимум 36px. */
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 7vw, 36px);
+}
+
+/* Общие настройки для двух классов. line-height: 1.6 увеличивает межстрочный интервал. */
+.rules, .hint {
+  color: #637067;
+  line-height: 1.6;
+}
+
+/* Отступ под правилами и размер их текста. */
+.rules {
+  margin: 0 0 24px;
+  font-size: 14px;
+}
+
+/* Grid раскладывает карточки в три равных столбца. 1fr — одна доля свободной ширины. */
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* Flex с column ставит название, число и подпись друг под другом. gap задаёт промежутки. */
+.score {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 4px;
+  border: 1px solid #dedfd7;
+  border-radius: 14px;
+  background: #fffefa;
+  font-size: 13px;
+}
+
+/* Тёплый цвет отличает карточку котиков. border-color меняет только цвет рамки. */
+.cat-score {
+  background: #fff0d9;
+  border-color: #ead5b5;
+}
+
+/* Голубой цвет отличает карточку игрока с фото. */
+.photo-score {
+  background: #e9eefb;
+  border-color: #d2dcef;
+}
+
+/* Выбираем strong только внутри карточки счёта: это крупное число. */
+.score strong {
+  font-size: 28px;
+}
+
+/* Приглушённый цвет вспомогательной подписи под числом. */
+.score small {
+  color: #637067;
+}
+
+/* Выделенная строка текущего хода или результата. */
+.turn {
+  margin: 22px 0 14px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Пять равных столбцов автоматически образуют пять рядов из 25 кнопок. */
+/* minmax(0, 1fr) разрешает столбцам сжиматься даже при большом содержимом. */
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #d9dfd3;
+  border-radius: 20px;
+  background: #e7ebe1;
+}
+
+/* aspect-ratio: 1 сохраняет квадратную форму клетки при любой ширине поля. */
+/* Размер эмодзи меняется с шириной окна в пределах от 26px до 42px. */
+.cell {
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid #e1e3d9;
+  border-radius: 10px;
+  background: #fffefa;
+  font-size: clamp(26px, 8vw, 42px);
+  cursor: pointer;
+}
+
+/* Подсветка при наведении действует только на доступную для хода клетку. */
+.cell:hover:not(:disabled) {
+  background: #f5e8c9;
+}
+
+/* Занятые клетки и завершённое поле заблокированы, но символы не тускнеют. */
+.cell:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+/* Оба класса должны быть на одной клетке. Скрипт добавляет winning победной тройке. */
+.cell.winning {
+  background: #d3e6ba;
+  border: 2px solid #668947;
+}
+
+/* Видимая рамка помогает понять, какая кнопка выбрана при управлении клавишей Tab. */
+button:focus-visible {
+  outline: 3px solid #426e59;
+  outline-offset: 3px;
+}
+
+/* Небольшая подсказка под игровым полем. */
+.hint {
+  margin: 20px 0 0;
+  font-size: 12px;
+}
+
+/* Общий стиль кнопок следующего раунда — на странице и внутри окна результата. */
+.button {
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: #355e49;
+  color: white;
+  font: bold 15px Arial, sans-serif;
+  cursor: pointer;
+}
+
+/* При наведении кнопка становится темнее. */
+.button:hover {
+  background: #274936;
+}
+
+/* Отделяем кнопку на странице от нижнего края поля. */
+.next-round {
+  margin-top: 18px;
+}
+
+/* Окно результата: не шире 360px и с запасом 32px по ширине на маленьком экране. */
+/* min выбирает меньшее значение, calc вычисляет ширину с учётом вычета. */
+dialog {
+  width: min(360px, calc(100% - 32px));
+  padding: 30px 24px;
+  border: 1px solid #dedfd7;
+  border-radius: 20px;
+  background: #fffefa;
+  color: #29372e;
+  text-align: center;
+}
+
+/* Полупрозрачное затемнение позади окна, открытого через showModal(). */
+dialog::backdrop {
+  background: rgb(30 44 35 / 45%);
+}
+
+/* Крупный символ победителя или знак рукопожатия при ничьей. */
+.result-emoji {
+  font-size: 56px;
+}
+
+/* Отступы заголовка внутри окна. */
+dialog h2 {
+  margin: 14px 0 10px;
+}
+
+/* Текст пояснения и отступ перед кнопкой. */
+dialog p {
+  margin: 0 0 24px;
+  color: #637067;
+  line-height: 1.5;
+}
+
+/* Эти правила переопределяют отступы и размеры на экранах шириной до 400px. */
+@media (max-width: 400px) {
+  body { padding-top: 24px; }
+  .board { gap: 6px; padding: 8px; }
+  .scoreboard { gap: 6px; }
+  .score { font-size: 12px; }
+}
+
+/* Фото масштабируется относительно размера текста: маленькое в счёте, крупнее в клетках и окне.
+   object-fit: cover заполняет квадрат без искажения пропорций исходной фотографии. */
+.player-photo {
+  width: 1.2em;
+  height: 1.2em;
+  object-fit: cover;
+  border-radius: 6px;
+  vertical-align: middle;
+}

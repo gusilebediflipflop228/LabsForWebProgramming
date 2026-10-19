@@ -1,0 +1,191 @@
+/* Селекторы выбирают элементы: .имя — по классу, #имя — по id, body — по тегу.
+   Звёздочка выбирает все элементы. border-box включает рамку и внутренние отступы
+   в заданную ширину, чтобы блоки не становились неожиданно шире. */
+* {
+  box-sizing: border-box;
+}
+
+/* Вся страница: убираем стандартные отступы, задаём шрифт и фон.
+   100vh — высота окна; grid + place-items центрируют карточку.
+   margin — внешний отступ, padding — внутренний; размеры здесь заданы в пикселях (px). */
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 32px 16px;
+  display: grid;
+  place-items: center;
+  font-family: Arial, sans-serif;
+  color: #000405;
+  background: #2e17cc;
+}
+
+/* Белая карточка занимает доступную ширину, но не больше 490px.
+   border — рамка, border-radius — скругление, box-shadow — мягкая тень. */
+.card {
+  width: 100%;
+  max-width: 490px;
+  padding: 36px;
+  background: #fff;
+  border: 1px solid #e3e1ef;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px #2920460d;
+}
+
+/* Небольшая подпись с номером лабораторной.
+   У margin с тремя значениями порядок: сверху, по бокам, снизу. */
+.subtitle {
+  margin: 0 0 18px;
+  color: #6751a8;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Главный заголовок. line-height задаёт высоту строки относительно размера шрифта. */
+h1 {
+  margin: 0 0 12px;
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+/* Через запятую перечислены два класса: общие цвет и межстрочный интервал. */
+.description, .note {
+  color: #656576;
+  line-height: 1.5;
+}
+
+/* Расстояние от пояснения до поля ввода. */
+.description {
+  margin: 0 0 28px;
+}
+
+/* Выбираем только подпись, у которой атрибут for равен password.
+   display: block размещает её отдельным блоком над полем. */
+label[for="password"] {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Поле ввода на всю ширину карточки. font: inherit наследует шрифт родителя. */
+#password {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #bbb8cd;
+  border-radius: 9px;
+  font: inherit;
+}
+
+/* Видимая рамка вокруг активного поля, например при переходе клавишей Tab.
+   outline-offset отодвигает эту рамку от границы элемента. */
+input:focus-visible {
+  outline: 3px solid #bfb1ec;
+  outline-offset: 3px;
+}
+
+/* Flex размещает флажок и подпись в одну строку; gap задаёт расстояние между ними. */
+.show-password {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Размер и цвет самого флажка внутри подписи. */
+.show-password input {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: #6751a8;
+}
+
+/* Блок надёжности. --strength-color — CSS-переменная с цветом индикатора.
+   По умолчанию цвет нейтральный; классы ниже меняют его после проверки. */
+.strength {
+  --strength-color: #b7b4c7;
+  margin: 26px 0 22px;
+}
+
+/* Текст результата над полосой индикатора. */
+#result {
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+/* Размер и фон индикатора. appearance отключает стандартное оформление. */
+meter {
+  display: block;
+  width: 100%;
+  height: 10px;
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  background: #eeedf4;
+}
+
+/* Фон внутренней полосы meter в браузерах Chrome, Edge и Safari.
+   Такие части встроенного элемента выбираются специальными псевдоэлементами. */
+meter::-webkit-meter-bar {
+  height: 10px;
+  border: none;
+  background: #eeedf4;
+}
+
+/* Заполненная часть полосы в Chrome, Edge и Safari; var читает CSS-переменную. */
+meter::-webkit-meter-optimum-value {
+  background: var(--strength-color);
+}
+
+/* Аналогичное оформление заполненной части для Firefox. */
+meter::-moz-meter-bar {
+  background: var(--strength-color);
+}
+
+/* Два класса без пробела означают, что оба должны быть у одного элемента.
+   JavaScript добавляет weak, medium или strong: красный, жёлтый или зелёный цвет. */
+.strength.weak { --strength-color: #c33b49; }
+.strength.medium { --strength-color: #ba790c; }
+.strength.strong { --strength-color: #25805b; }
+
+/* Список условий. Убираем стандартные маркеры, потому что значки заданы в HTML. */
+#requirements {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Пункты внутри списка: расстояние между строками и исходный серый цвет. */
+#requirements li {
+  margin: 10px 0;
+  color: #656576;
+}
+
+/* Условие выполнено: скрипт добавил пункту класс passed, окрашиваем его в зелёный. */
+#requirements li.passed {
+  color: #22754f;
+}
+
+/* Одинаковая ширина для кружков и галочек сохраняет ровное выравнивание текста. */
+.mark {
+  display: inline-block;
+  width: 20px;
+  font-weight: bold;
+}
+
+/* Нижнее пояснение отделено тонкой линией и набрано уменьшенным шрифтом. */
+.note {
+  margin: 26px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid #eeedf4;
+  font-size: 12px;
+}
+
+/* На экранах шириной до 480px уменьшаем отступы и заголовок, чтобы всё помещалось. */
+@media (max-width: 480px) {
+  .card { padding: 24px; }
+  h1 { font-size: 26px; }
+}

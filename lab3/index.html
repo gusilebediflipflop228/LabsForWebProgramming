@@ -1,0 +1,47 @@
+<!DOCTYPE html> <!-- тип документа -->
+<html lang="ru"> <!-- дока на русском -->
+    <head>
+    <meta charset="UTF-8" /> <!-- Включает нормальное отображение русских букв -->
+    <title> Генератор случайных чисел </title> <!-- Задаёт название вкладки браузера -->
+    <link rel="stylesheet" href="styles.css" /> <!-- Подключает файл со стилями. -->
+    </head> <!-- настройки страницы, которые обычно не отображаются внутри неё -->
+
+    <body>
+    <main class = "app" >
+        <header class="header">
+            <div> <!-- обычная коробка для группировки элементов -->
+                <p class="label">Лабораторная работа 3</p>
+                <h1>Генератор<br />случайных чисел</h1> <!-- главный заголовок -->
+            </div>
+        </header> <!-- верхняя часть страницы -->
+
+        <div class="number" id="randomNumber" > </div>
+
+        <div class="range">
+        <label for="minNumber"> От </label>
+        <input
+            id="minNumber"
+            type="number"
+            value="1"
+            step="1"
+        />
+
+        <label for="maxNumber"> До </label>
+        <input
+            id="maxNumber"
+            type="number"
+            value="100"
+            step="1"
+        />
+        </div>
+
+        <button class="generate-button" id="generateButton" type="button">
+            Сгенерировать
+        </button>
+
+        <p class="message" id="message"></p> <!-- Сначала этот элемент пустой.После копирования JavaScript помещает в него текст -->
+    </main>
+
+    <script src="script.js"></script> <!-- Загрузи и выполни код из файла script.js -->
+    </body>
+</html>
