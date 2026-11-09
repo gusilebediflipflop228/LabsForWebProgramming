@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Русская клавиатура</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<main>
+    <h1>Русская клавиатура</h1>
+
+    <label for="text">Введите текст:</label>
+    <textarea id="text" rows="5" placeholder="Ваш текст..."></textarea>
+
+    <!-- Кнопки букв и цифр создаются в JavaScript. -->
+    <div id="keyboard"></div>
+
+    <!-- Служебные клавиши. -->
+    <div class="row controls">
+        <button type="button" id="caps" aria-pressed="false">Caps Lock</button>
+        <button type="button" id="space">Пробел</button>
+        <button type="button" id="enter">Enter</button>
+        <button type="button" id="backspace">⌫</button>
+    </div>
+</main>
+</body>
+</html>

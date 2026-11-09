@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа 8</title>
+
+    <style>
+        /* Простое оформление страницы. */
+        body {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font: inherit;
+        }
+
+        button {
+            padding: 10px 20px;
+            font: inherit;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Подсчёт символов и слов</h1>
+
+<!-- Поле для ввода многострочного текста. -->
+<label for="text">Введите текст:</label>
+<textarea id="text" rows="8"></textarea>
+
+<!-- По нажатию вызывается функция showResult. -->
+<button type="button" onclick="showResult()">Посчитать</button>
+
+<script>
+    // Считаем показатели введённого текста.
+    function countText(text) {
+        // Все символы, включая пробелы и переносы строк.
+        const characters = Array.from(text).length;
+
+        // match ищет совпадения, g — по всему тексту.
+        // Если совпадений нет, берём пустой массив [].
+        const spaces = (text.match(/ /g) || []).length;
+
+        // \d — цифра, + — одна или несколько подряд.
+        // Например, "123 45" содержит два числа.
+
+        // Разделители: пробельные символы и знаки . , ? !
+        const numberParts = text.split(/[\s.,?!]+/);
+
+        // \d — цифра, + — одна или несколько подряд.
+        // Например, "123 45" содержит два числа.
+        const numbers = numberParts.filter(part => /^\d+$/.test(part)).length;
+
+
+        // Оставляем фрагменты только из букв.
+        // ^ и $ — границы фрагмента, i — любой регистр.
+        const words = numberParts.filter(part =>
+            /^[a-zа-яё]+$/i.test(part)
+        ).length;
+
+        return { characters, spaces, numbers, words };
+    }
+
+    function showResult() {
+        // Получаем содержимое поля ввода.
+        const text = document.getElementById('text').value;
+        const result = countText(text);
+
+        // Показываем результат во всплывающем окне.
+        // \n переносит текст на следующую строку.
+        alert(
+            'Всего символов: ' + result.characters + '\n' +
+            'Пробелов: ' + result.spaces + '\n' +
+            'Чисел: ' + result.numbers + '\n' +
+            'Слов: ' + result.words
+        );
+    }
+</script>
+</body>
+</html>

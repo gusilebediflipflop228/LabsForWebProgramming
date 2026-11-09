@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    background-color: #60cb1a;
+    color: #243c47;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+main {
+    /* Автоматические боковые отступы размещают пазл по центру. */
+    width: min(450px, calc(100% - 20px));
+    margin: 10px auto 0;
+}
+
+#puzzle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    aspect-ratio: 1;
+}
+
+.piece {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-image: url("picture.jpg");
+    /* Каждая кнопка показывает одну девятую часть фотографии. */
+    background-size: 300% 300%;
+    box-shadow: inset 0 0 0 1px white;
+    cursor: pointer;
+}
+
+.piece:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.piece:focus-visible {
+    outline: 3px solid #ffb300;
+    outline-offset: -3px;
+}
+
+#full-picture {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Правило важнее display: grid и display: block у элементов выше. */
+[hidden] {
+    display: none !important;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+#message {
+    font-size: 28px;
+    font-weight: bold;
+    color: #22603a;
+}
+
+#restart {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #315f73;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.source {
+    font-size: 13px;
+}
+
+a {
+    color: #315f73;
+}

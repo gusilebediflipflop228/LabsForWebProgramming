@@ -1,0 +1,113 @@
+/* Включаем отступы и рамки в размеры элементов. */
+* {
+    box-sizing: border-box;
+}
+
+/* Центрируем страницу и оставляем отступ сверху. */
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 60px 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: #263238;
+    background: #f0f3f6;
+}
+
+main {
+    width: 100%;
+    max-width: 760px;
+    padding: 24px;
+    border-radius: 12px;
+    background: white;
+}
+
+h1 {
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 28px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #aebbc7;
+    border-radius: 6px;
+    font: 20px Arial, sans-serif;
+    resize: vertical;
+}
+
+/* Кнопки каждого ряда располагаются по центру. */
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+button {
+    width: 46px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid #c5ced6;
+    border-radius: 6px;
+    background: #edf1f5;
+    color: inherit;
+    font: 18px Arial, sans-serif;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #dce6f0;
+}
+
+/* Подсвечиваем нажатую кнопку и включённый Caps Lock. */
+button:active,
+button.active {
+    color: white;
+    background: #346ca6;
+}
+
+.controls button {
+    width: auto;
+    padding: 0 12px;
+}
+
+#space {
+    flex-grow: 1;
+    max-width: 260px;
+    background: #1d4ed8;
+}
+
+/* На маленьком экране уменьшаем отступы и кнопки. */
+@media (max-width: 600px) {
+    main {
+        padding: 16px 8px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .row {
+        gap: 3px;
+    }
+
+    button {
+        min-width: 0;
+        font-size: 14px;
+    }
+
+    .controls button {
+        padding: 0 6px;
+        font-size: 12px;
+    }
+}

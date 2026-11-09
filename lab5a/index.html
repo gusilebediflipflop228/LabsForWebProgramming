@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир животных — викторина</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <h1>Мир животных</h1>
+        <p>Проверь, насколько хорошо ты знаешь животных!</p>
+        <!-- Вопросы показываются по одному. -->
+        <section id="quiz">
+            <p id="progress"></p>
+            <h2 id="question" tabindex="-1"></h2>
+            <form id="answer-form">
+                <div id="options"></div>
+                <!-- Поле появляется только в вопросе с вводом ответа. -->
+                <div id="text-answer" hidden>
+                    <label for="answer-input">Впиши один из четырёх вариантов:</label>
+                    <input id="answer-input" type="text" autocomplete="off">
+                </div>
+                <p id="message" role="status"></p>
+                <button type="submit" id="next-button">Далее</button>
+            </form>
+        </section>
+        <!-- Результат скрыт до конца игры. -->
+        <section id="result" hidden>
+            <h2 id="result-title" tabindex="-1"></h2>
+            <img id="result-image" width="180" height="180" alt="">
+            <p id="result-score"></p>
+            <button id="restart-button" type="button">Пройти ещё раз</button>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная № 9 — Пазл перевёртыш</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <!-- Пазл стоит первым, чтобы отступ от верха страницы был 10px. -->
+        <div id="puzzle" aria-label="Пазл из девяти частей"></div>
+        <img id="full-picture" src="picture.jpg" alt="Горная вершина в облаках" hidden>
+
+        <p id="message" role="status" hidden>Конец!</p>
+        <h1>Пазл перевёртыш</h1>
+        <p>Нажимайте на части картинки, чтобы повернуть их на 90°.</p>
+        <p>Правильно повёрнутая часть больше не вращается.</p>
+        <button id="restart" type="button">Начать заново</button>
+        <p class="source">Фото: <a href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b">Unsplash</a></p>
+    </main>
+</body>
+</html>
